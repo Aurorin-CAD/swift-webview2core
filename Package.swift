@@ -13,8 +13,8 @@ let package = Package(
             revision: "eb46cdb66f770a1e006f9fcfebbf9e99a0fba811"
         ),
         .package(
-            url: "https://github.com/stackotter/swift-uwp",
-            revision: "8128f6615b7c5b46ada289ab6d49d871ca1e13a5"
+            url: "https://github.com/Aurorin-CAD/swift-uwp",
+            revision: "511fe98b3c3d0b6afc342c46e81a6859c57c2c51"
         ),
         .package(
             url: "https://github.com/stackotter/swift-windowsfoundation",
