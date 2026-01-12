@@ -2,6 +2,19 @@
 
 import PackageDescription
 
+// Approachable Concurrency settings for Swift 6.2
+let approachableConcurrencySettings: [SwiftSetting] = [
+    .enableUpcomingFeature("DisableOutwardActorInference"),
+    .enableUpcomingFeature("GlobalActorIsolatedTypesUsability"),
+    .enableUpcomingFeature("InferIsolatedConformances"),
+    .enableUpcomingFeature("InferSendableFromCaptures"),
+    // .enableUpcomingFeature("NonisolatedNonsendingByDefault")
+]
+
+let defaultMainActorIsolationSettings = approachableConcurrencySettings + [
+    .unsafeFlags(["-Xfrontend", "-default-isolation", "-Xfrontend", "MainActor"])
+]
+
 let package = Package(
     name: "swift-webview2core",
     products: [
@@ -14,11 +27,11 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/Aurorin-CAD/swift-uwp",
-            revision: "511fe98b3c3d0b6afc342c46e81a6859c57c2c51"
+            revision: "c23402e4cbfdb7a557d3aa0cfdf78c046bed7f4e"
         ),
         .package(
-            url: "https://github.com/stackotter/swift-windowsfoundation",
-            revision: "4ad57d20553514bcb23724bdae9121569b19f172"
+            url: "https://github.com/Aurorin-CAD/swift-windowsfoundation",
+            revision: "d42769d70552fe59fade6fdf44bfb71c86101db7"
         ),
     ],
     targets: [
@@ -28,7 +41,8 @@ let package = Package(
                 .product(name: "CWinRT", package: "swift-cwinrt"),
                 .product(name: "UWP", package: "swift-uwp"),
                 .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
-            ]
+            ],
+            swiftSettings: defaultMainActorIsolationSettings
         )
     ]
 )
